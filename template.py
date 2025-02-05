@@ -4,7 +4,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-project_name='customer-churn-prediction'
+project_name='customer_churn_prediction'
 
 list_of_files = [
     f"src/{project_name}/__init__.py",
