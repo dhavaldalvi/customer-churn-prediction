@@ -1,4 +1,10 @@
 from sklearn.base import BaseEstimator, TransformerMixin
+import numpy as np
+import pickle
+import os
+from src.customer_churn_prediction.exception import MyException
+import sys
+
 
 #Creatng custom transformer to drop or removes columns.
 class DropColumnsTransformer(BaseEstimator, TransformerMixin):
@@ -15,7 +21,7 @@ class DropColumnsTransformer(BaseEstimator, TransformerMixin):
    def transform(self, X):
        # Drop the specified columns
        X_copy = X.copy()
-       X_copy.drop(columns=self.columns_to_drop, inplace=True)
+       X_copy.drop(columns=self.columns_to_drop, inplace=True, axis = 1)
        return X_copy
     
 
@@ -47,3 +53,18 @@ def remove_categorical_outliers(df, threshold=2):
     
     # Return the Dataframe
     return df
+
+def save_object(file_path, obj):
+    '''
+    Function to save pickle object file
+    '''
+    try:
+        dir_path = os.path.dirname(file_path)
+
+        os.makedirs(dir_path, exist_ok=True)
+
+        with open(file_path, 'wb') as file_obj:
+            pickle.dump(obj, file_obj)
+
+    except Exception as e:
+        raise MyException(e, sys)
