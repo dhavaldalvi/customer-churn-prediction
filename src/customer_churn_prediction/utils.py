@@ -68,3 +68,18 @@ def save_object(file_path, obj):
 
     except Exception as e:
         raise MyException(e, sys)
+    
+
+def best_model_select(df, accuracy_low_limit):
+    '''
+    Function to return best model from the Dataframe of models
+    '''
+    cols = df.columns
+    if (df[df.columns[0]].max() and df[df.columns[1]].max()) < accuracy_low_limit:
+        print('No best model')
+        return 
+    elif df[df.columns[0]].max() > df[df.columns[1]].max():
+        x = df[df[df.columns[1]]==df[df.columns[1]].max()].index[0]
+    else:
+        x = df[df[df.columns[0]]==df[df.columns[0]].max()].index[0]
+    return x

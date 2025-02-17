@@ -2,14 +2,11 @@ import sys
 from dataclasses import dataclass
 import numpy as np
 import pandas as pd
-import os
 
-from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
-from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, classification_report
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
 
 from src.customer_churn_prediction.utils import DropColumnsTransformer
