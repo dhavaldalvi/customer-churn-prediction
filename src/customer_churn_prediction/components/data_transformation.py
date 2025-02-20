@@ -5,17 +5,13 @@ import pandas as pd
 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
-from sklearn.metrics import accuracy_score, classification_report
-from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
-
-from src.customer_churn_prediction.utils import remove_numerical_outliers
 
 from src.customer_churn_prediction.exception import MyException
 from src.customer_churn_prediction.logger import logging
 
 from src.customer_churn_prediction.config import DataTransformationConfig
-from src.customer_churn_prediction.utils import save_object
+from src.customer_churn_prediction.utils import save_object, remove_numerical_outliers
 
 class DataTransformation:
     def __init__(self):

@@ -1,18 +1,14 @@
 import numpy as np
 import pandas as pd
 import sys
-import os
 
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import accuracy_score, classification_report
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import classification_report
+from sklearn.model_selection import GridSearchCV
 
-from sklearn.neighbors import KNeighborsClassifier 
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.naive_bayes import GaussianNB
 from xgboost import XGBClassifier
 
 import warnings
@@ -94,9 +90,11 @@ class ModelTrainer:
             best_models = {}
             for model_name, model in models.items():
                 print(f"\nRunning GridSearchCV for {model_name}...")
+
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grids[model_name], cv=3, n_jobs=-1, verbose=1)
                 grid_search.fit(X_train, y_train)
                 best_models[model_name] = grid_search.best_estimator_
+
                 print(f"\nEvaluating the model: {model_name} with best hyperparameters: {grid_search.best_params_}")
                 print('-'*100)
 
