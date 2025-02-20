@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Churn Prediction</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="creditScore">Credit Score:</label>
+                <input type="number" id="creditScore" name="CreditScore" required>
+            </div>
+            <div class="form-group">
+                <label for="geography">Geography:</label>
+                <select id="geography" name="Geography" required>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Spain">Spain</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="Gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="Age" required>
+            </div>
+            <div class="form-group">
+                <label for="tenure">Tenure (in years):</label>
+                <input type="number" id="tenure" name="Tenure" required>
+            </div>
+            <div class="form-group">
+                <label for="balance">Balance:</label>
+                <input type="number" id="balance" name="Balance" required>
+            </div>
+            <div class="form-group">
+                <label for="numOfProducts">Number of Products:</label>
+                <input type="number" id="numOfProducts" name="NumOfProducts" required>
+            </div>
+            <div class="form-group">
+                <label for="hasCrCard">Has Credit Card:</label>
+                <select id="hasCrCard" name="HasCrCard" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="isActiveMember">Is Active Member:</label>
+                <select id="isActiveMember" name="IsActiveMember" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="estimatedSalary">Estimated Salary:</label>
+                <input type="number" id="estimatedSalary" name="EstimatedSalary" required>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

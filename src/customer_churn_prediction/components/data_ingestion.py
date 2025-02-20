@@ -16,6 +16,7 @@ class DataIngestion:
         try:
             # Reading data from data folder or if required from any database
             data = pd.read_csv('data/Churn_Modelling.csv')
+            data = data.drop(['RowNumber', 'CustomerId', 'Surname'], axis=1)
             logging.info("Reading from data")
             # Making folder to store data
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)

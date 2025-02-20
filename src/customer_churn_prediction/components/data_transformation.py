@@ -9,7 +9,6 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
 
-from src.customer_churn_prediction.utils import DropColumnsTransformer
 from src.customer_churn_prediction.utils import remove_numerical_outliers
 
 from src.customer_churn_prediction.exception import MyException
@@ -30,11 +29,8 @@ class DataTransformation:
             logging.info("Features preprocessing......")
             categorical_cols = ['Geography', 'Gender']
             numerical_cols = ['CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary']
-            dropped_cols = ['RowNumber', 'CustomerId', 'Surname']
-            columns_to_drop = DropColumnsTransformer(dropped_cols)
             preprocessor = ColumnTransformer(
                 transformers=[
-                                ('drop columns', columns_to_drop, dropped_cols),
                                 ('numerical scaler', StandardScaler(), numerical_cols),  # Apply StandardScaler to numerical columns
                                 ('categorical encoder', OneHotEncoder(), categorical_cols)      # Apply OneHotEncoder to nominal columns
                             ])

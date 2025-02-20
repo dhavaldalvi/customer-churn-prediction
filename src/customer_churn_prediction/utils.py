@@ -1,28 +1,10 @@
 from sklearn.base import BaseEstimator, TransformerMixin
-import numpy as np
+import numpy as np 
 import pickle
+import dill
 import os
 from src.customer_churn_prediction.exception import MyException
 import sys
-
-
-#Creatng custom transformer to drop or removes columns.
-class DropColumnsTransformer(BaseEstimator, TransformerMixin):
-   '''
-   Transformer which removes given columns.
-   '''
-   def __init__(self, columns_to_drop):
-       self.columns_to_drop = columns_to_drop
-
-   def fit(self, X, y=None):
-       # Nothing to learn, so we just return self
-       return self
-
-   def transform(self, X):
-       # Drop the specified columns
-       X_copy = X.copy()
-       X_copy.drop(columns=self.columns_to_drop, inplace=True, axis = 1)
-       return X_copy
     
 
 # Function to remove outliers for numerical columns
@@ -83,3 +65,14 @@ def best_model_select(df, accuracy_low_limit):
     else:
         x = df[df[df.columns[0]]==df[df.columns[0]].max()].index[0]
     return x
+
+def load_object(file_path):
+    '''
+    Function to load pickle file
+    '''
+    try:
+        with open(file_path, 'rb') as file_obj:
+            return dill.load(file_obj)
+        
+    except Exception as e:
+        raise MyException(e, sys)

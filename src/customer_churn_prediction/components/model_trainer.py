@@ -93,11 +93,12 @@ class ModelTrainer:
             # Running GridSearchCV on each model
             best_models = {}
             for model_name, model in models.items():
-                print(f"Running GridSearchCV for {model_name}...")
+                print(f"\nRunning GridSearchCV for {model_name}...")
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grids[model_name], cv=3, n_jobs=-1, verbose=1)
                 grid_search.fit(X_train, y_train)
                 best_models[model_name] = grid_search.best_estimator_
-                print(f"\nEvaluating best model: {model_name} with hyperparameters: {grid_search.best_params_}")
+                print(f"\nEvaluating the model: {model_name} with best hyperparameters: {grid_search.best_params_}")
+                print('-'*100)
 
             # Evaluate the best models
             f1_class_0 = []
@@ -109,17 +110,19 @@ class ModelTrainer:
                 f1_class_0.append(report_result['0.0']['f1-score'])
                 f1_class_1.append(report_result['1.0']['f1-score'])
                 index.append(model_name)
-                #print(classification_report(y_test, y_pred))
-                #print('-'*100)
             
-            model_f1_score = pd.DataFrame({'f1_class_0':f1_class_0, 'f1_class_1': f1_class_1}, index=index)
+            model_f1_score = pd.DataFrame({'f1-score_class_0':f1_class_0, 'f1-score_class_1': f1_class_1}, index=index)
+            print('\nDataframe of various models with their f-score for class 0 (No) or No and 1 (Yes).')
             print(model_f1_score)
             logging.info(model_f1_score)
 
-            print(f'Best model is {best_model_select(model_f1_score, accuracy_low_limit=0.55)}')
+            print(f'\nBest model is {best_model_select(model_f1_score, accuracy_low_limit=0.55)}')
+            print('-'*100)
             logging.info(f'Best model is {best_model_select(model_f1_score, accuracy_low_limit=0.55)}')
 
             best_model = models[best_model_select(model_f1_score, accuracy_low_limit=0.55)]
+
+            best_model = best_model.fit(X_train, y_train)
 
             save_object(
                 file_path=self.model_trainer_config.trained_model_file_path,
