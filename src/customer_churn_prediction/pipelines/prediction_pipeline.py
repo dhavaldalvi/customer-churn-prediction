@@ -13,6 +13,7 @@ class PredictPipeline:
     def __init__(self):
         pass
 
+    # Function to give the prediction and it's probability
     def predict(self, features):
         try:
             preprocessor_path_object = DataTransformationConfig()
@@ -57,6 +58,7 @@ class CustomData:
         self.is_active_member = is_active_member
         self.estimated_salary = estimated_salary
 
+    # Function to convert the data to dataframe
     def data_to_dataframe(self):
         try:
             custom_data_input_dict = {'CreditScore':[self.credit_score],

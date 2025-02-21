@@ -1,4 +1,3 @@
-from sklearn.base import BaseEstimator, TransformerMixin
 import numpy as np 
 import pickle
 import dill
@@ -7,8 +6,10 @@ from src.customer_churn_prediction.exception import MyException
 import sys
     
 
-# Function to remove outliers for numerical columns
 def remove_numerical_outliers(df):
+    '''
+    Function to remove outliers for numerical columns
+    '''
     # Apply IQR for numerical columns
     numerical_cols = df.select_dtypes(include=['number']).columns
     Q1 = df[numerical_cols].quantile(0.25)
@@ -21,8 +22,10 @@ def remove_numerical_outliers(df):
     # Return the Dataframe
     return df[condition]
 
-# Function to remove outliers for categorical columns
 def remove_categorical_outliers(df, threshold=2):
+    '''
+    Function to remove outliers for categorical columns
+    '''
     # Apply frequency-based filtering for categorical columns
     categorical_cols = df.select_dtypes(include=['object']).columns
     for col in categorical_cols:

@@ -14,8 +14,7 @@ from src.customer_churn_prediction.pipelines.training_pipeline import TrainingPi
 
 app = Flask(__name__)
 
-training_pipeline_object = TrainingPipeline()
-training_pipeline_object.initiate_training_pipeline()
+TrainingPipeline().initiate_training_pipeline()
 
 # Home page
 @app.route('/')
@@ -52,7 +51,7 @@ def predict():
 
 
 if __name__ == '__main__':
-   app.run(debug=True)
+   app.run(debug=False)
 
 
 #if __name__ == '__main__':
