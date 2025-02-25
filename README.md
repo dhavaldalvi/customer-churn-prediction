@@ -6,7 +6,7 @@ This project is a **Customer Churn Prediction App** built using the **Flask** fr
 
 **Input**
 
-<img src="https://github.com/dhavaldalvi/customer-churn-prediction/blob/main/screenshots/home.png" width="45%" height="45%" />
+<img src="https://github.com/dhavaldalvi/customer-churn-prediction/blob/main/screenshots/home.png" width="65%" height="65%" />
 
 **Prediction:**
 
